@@ -1,0 +1,38 @@
+DROP TABLE IF EXISTS `User`;
+CREATE TABLE `User` (
+  `id` INT AUTO_INCREMENT,
+  `name` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(50) NOT NULL,
+  `state` ENUM('online', 'offline') DEFAULT 'offline',
+  PRIMARY KEY (id),UNIQUE KEY (`name`)
+);
+
+ 
+DROP TABLE IF EXISTS Friend;
+CREATE TABLE Friend(
+   userid INT  NOT NULL,
+   friendid INT  NOT NULL,
+   PRIMARY KEY(userid,friendid)
+);
+
+DROP TABLE IF EXISTS `AllGroup`;
+CREATE TABLE `AllGroup` (
+  `id` INT AUTO_INCREMENT,
+  `groupname` VARCHAR(50) NOT NULL,
+  `groupdesc` VARCHAR(200) DEFAULT '',
+  PRIMARY KEY (id),UNIQUE KEY (`groupname`)
+);
+
+DROP TABLE IF EXISTS GroupUser;
+CREATE TABLE GroupUser(
+   groupid INT  NOT NULL,
+   userid INT  NOT NULL,
+   grouprole  ENUM('creator', 'normal') DEFAULT 'normal',
+   PRIMARY KEY(groupid,userid)
+);
+
+DROP TABLE IF EXISTS OfflineMessage;
+CREATE TABLE OfflineMessage(
+   userid INT  NOT NULL,
+   message VARCHAR(500) NOT NULL
+);
